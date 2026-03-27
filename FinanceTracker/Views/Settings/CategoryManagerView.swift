@@ -73,23 +73,6 @@ struct CategoryManagerView: View {
                 }
             }
         }
-        .alert("Nova Categoria", isPresented: $showingAdd) {
-            TextField("Nome da categoria", text: $novoNome)
-            Button("Cancelar", role: .cancel) {
-                novoNome = ""
-            }
-            Button("Adicionar") {
-                addCategory()
-            }
-            .disabled(novoNome.trimmingCharacters(in: .whitespaces).isEmpty)
-        } message: {
-            VStack {
-                Picker("Tipo", selection: $novoTipo) {
-                    Text("Receita").tag(TransactionType.receita)
-                    Text("Despesa").tag(TransactionType.despesa)
-                }
-            }
-        }
         .sheet(isPresented: $showingAdd) {
             AddCategorySheet(customCategories: customCategories) { nome, tipo in
                 let category = Category(nome: nome, tipo: tipo)
