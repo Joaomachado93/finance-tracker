@@ -5,7 +5,8 @@ import SwiftData
 struct FinanceTrackerApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Transaction.self
+            Transaction.self,
+            Category.self
         ])
         let modelConfiguration = ModelConfiguration(
             schema: schema,

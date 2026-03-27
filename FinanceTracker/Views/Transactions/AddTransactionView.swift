@@ -4,6 +4,7 @@ import SwiftData
 struct AddTransactionView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
+    @Query(sort: \Category.nome) private var customCategories: [Category]
 
     let transacaoExistente: Transaction?
 
@@ -17,7 +18,9 @@ struct AddTransactionView: View {
     private var editando: Bool { transacaoExistente != nil }
 
     private var categorias: [String] {
-        Transaction.categorias(para: tipo)
+        let predefinidas = Transaction.categorias(para: tipo)
+        let custom = customCategories.filter { $0.tipo == tipo }.map(\.nome)
+        return predefinidas + custom
     }
 
     private var formularioValido: Bool {

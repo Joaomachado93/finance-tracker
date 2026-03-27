@@ -28,6 +28,15 @@ struct SettingsView: View {
                     }
                 }
 
+                // Categorias
+                Section("Categorias") {
+                    NavigationLink {
+                        CategoryManagerView()
+                    } label: {
+                        Label("Gerir Categorias", systemImage: "tag")
+                    }
+                }
+
                 // Dados
                 Section("Dados") {
                     HStack {
